@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<RoboticsAPIData version="3">
+    <world>
+        <gravitation x="0.0" y="0.0" z="9.81"/>
+    </world>
+    <objectTemplates>
+        <toolTemplate class="com.kuka.grippertoolbox.gripper.CustomIoGripper" defaultMotionFrameRef="/TCP" name="SchunkCoActGripper">
+            <frames>
+                <frame id="_2142cb7c-e35e-412d-a6a6-ec722f70a17a" name="TCP">
+                    <transformation a="-1.05" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
+                </frame>
+            </frames>
+            <additionalInformation>
+                <info key="gtb.templateId" type="java.lang.String" value="FestoHGPL1440A"/>
+                <info key="Comment" type="java.lang.String" value="Schunk Co-Act digital I/O gripper"/>
+            </additionalInformation>
+            <userInformation>
+                <info key="gtb.type" type="java.lang.String" value="pneumatic"/>
+                <info key="gtb.output.GRIP" type="java.lang.String" value="MediaFlange.OutputX3Pin1"/>
+                <info key="gtb.output.RELEASE" type="java.lang.String" value="MediaFlange.OutputX3Pin11"/>
+                <info key="gtb.input.GRIPPED" type="java.lang.String" value="MediaFlange.InputX3Pin10"/>
+                <info key="gtb.input.GRIPPED_ITEM" type="java.lang.String" value="Unused"/>
+                <info key="gtb.input.RELEASED" type="java.lang.String" value="MediaFlange.InputX3Pin16"/>
+                <info key="gtb.parameter.DEBOUNCE_TIME" type="java.lang.Long" value="200"/>
+                <info key="gtb.parameter.STATE_TIMEOUT" type="java.lang.Long" value="1000"/>
+                <info key="gtb.parameter.IO_TIMEOUT" type="java.lang.Long" value="1000"/>
+            </userInformation>
+            <loadData cogA="0.3927" cogB="0.0" cogC="0.0" cogX="0.405" cogY="0.42" cogZ="22.113" inertiaX="0.00103" inertiaY="0.00151" inertiaZ="0.00105" mass="0.62"/>
+        </toolTemplate>
+    </objectTemplates>
+    <processDataContainer>
+        <processData dataType="java.lang.Boolean" defaultValue="false" displayName="GrippedWorkpiece" id="grpdWpcs" value="false"/>
+        <processData dataType="java.lang.Double" defaultValue="0.1" displayName="deltaTseconds" id="dt" value="0.1"/>
+        <processData dataType="java.lang.Double" defaultValue="0.0" displayName="ForceX" id="Fx" value="0.0"/>
+        <processData dataType="java.lang.Double" defaultValue="0.0" displayName="ForceY" id="Fy" value="0.0"/>
+        <processData dataType="java.lang.Double" defaultValue="0.0" displayName="ForceZ" id="Fz" value="0.0"/>
+        <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TorqueX" id="Taux" value="0.0"/>
+        <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TorqueY" id="Tauy" value="0.0"/>
+        <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TorqueZ" id="Tauz" value="0.0"/>
+    </processDataContainer>
+</RoboticsAPIData>
