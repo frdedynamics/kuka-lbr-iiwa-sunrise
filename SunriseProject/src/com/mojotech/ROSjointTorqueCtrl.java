@@ -6,7 +6,6 @@ import java.util.concurrent.TimeoutException;
 
 import javax.inject.Inject;
 
-import com.kuka.common.ThreadUtil;
 import com.kuka.connectivity.fastRobotInterface.ClientCommandMode;
 import com.kuka.connectivity.fastRobotInterface.FRIConfiguration;
 import com.kuka.connectivity.fastRobotInterface.FRIJointOverlay;
@@ -85,7 +84,7 @@ public class ROSjointTorqueCtrl extends RoboticsAPIApplication
         // wait until FRI session is ready to switch to command mode
         try
         {
-            friSession.await(20, TimeUnit.SECONDS);
+            friSession.await(10, TimeUnit.SECONDS);
             getLogger().info("Connection to Client established");
         }
         catch (final TimeoutException e)
@@ -99,10 +98,6 @@ public class ROSjointTorqueCtrl extends RoboticsAPIApplication
 		PTP ptpToStartPosition = ptp(startPosition);
 		ptpToStartPosition.setJointVelocityRel(0.2);
 		lbr.move(ptpToStartPosition);
-		
-		JointImpedanceControlMode ctrMode = new JointImpedanceControlMode(200, 200, 200, 200, 200, 200, 0);
-        PositionHold posHold = new PositionHold(ctrMode, 20, TimeUnit.SECONDS);
-        lbr.move(posHold);
         
         int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, "Stawp?", "Yes", "Never!");
         if (isCancel == 0)
@@ -111,23 +106,12 @@ public class ROSjointTorqueCtrl extends RoboticsAPIApplication
             friSession.close();
             return;
         }
+
+        JointImpedanceControlMode ctrMode = new JointImpedanceControlMode(200, 200, 200, 200, 200, 200, 0);
+        PositionHold posHold = new PositionHold(ctrMode, 20, TimeUnit.SECONDS);
         
-        getLogger().info("enable clock");
-        ThreadUtil.milliSleep(5000);
-        friGroup.setOut_Bool_Enable_Clock(true);
-        
-        getLogger().info("Show modal dialog..");
-        isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, "Stawp?", "Yes", "Never!");
-        if (isCancel == 0)
-        {
-        	getLogger().info("Close connection to client");
-            friSession.close();
-            return;
-        }
-        
+        getLogger().info("Add ROS torque");
         lbr.move(posHold.addMotionOverlay(torqueOverlay));
-        getLogger().info("disable clock");
-        friGroup.setOut_Bool_Enable_Clock(false);
         
         getLogger().info("Close connection to client");
         friSession.close();
