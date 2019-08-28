@@ -1,6 +1,8 @@
 package com.gates;
 
 
+import static com.kuka.roboticsAPI.motionModel.BasicMotions.ptp;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -11,7 +13,9 @@ import java.net.UnknownHostException;
 import javax.inject.Inject;
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
 import com.kuka.roboticsAPI.deviceModel.LBR;
+import com.kuka.roboticsAPI.geometricModel.CartDOF;
 import com.kuka.roboticsAPI.geometricModel.Frame;
+import com.kuka.roboticsAPI.motionModel.controlModeModel.CartesianImpedanceControlMode;
 
 /**
  * Implementation of a robot application.
@@ -36,10 +40,14 @@ public class UdpCartesianControl extends RoboticsAPIApplication {
 	private DatagramSocket ds;
 	private InetAddress ip;
 	
-	
-	
 	private String externalPcIp;
 	private int udpPort;
+	
+	private static final int stiffnessZ = 2500;
+	private static final int stiffnessY = 700;
+	private static final int stiffnessX = 1500;
+	
+	private static final double jointVelocityRel = 0.05;
 
 	@Inject
 	private LBR lbr;
@@ -55,7 +63,7 @@ public class UdpCartesianControl extends RoboticsAPIApplication {
 		getLogger().info("Create datagram socket");
 		try {
 			ds = new DatagramSocket();
-			ds.setSoTimeout(30000);
+			ds.setSoTimeout(5000);
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,16 +84,29 @@ public class UdpCartesianControl extends RoboticsAPIApplication {
 
 	@Override
 	public void run() {
-		// your application execution starts here
+
+		getLogger().info("Set impedance");
+		CartesianImpedanceControlMode impedanceControlMode = new CartesianImpedanceControlMode();
+		impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
+		impedanceControlMode.parametrize(CartDOF.Y).setStiffness(stiffnessY);
+		impedanceControlMode.parametrize(CartDOF.Z).setStiffness(stiffnessZ);
+		
 		getLogger().info("Get and send current frame.");
 	    Frame currentFrame = lbr.getCurrentCartesianPosition(lbr.getFlange());
 	    getLogger().info(currentFrame.toString());
-	    
 	    sendFrame(currentFrame, ds, ip, udpPort);
 	    
-	    getLogger().info("Get new command frame.");
-	    Frame commandFrame = getCommandFrame(currentFrame, ds);
+	    getLogger().info("Get command frame.");
+	    Frame currentCommand = lbr.getCommandedCartesianPosition(lbr.getFlange());
+	    Frame commandFrame = getCommandFrame(currentCommand, ds);
 	    getLogger().info(commandFrame.toString());
+	    
+	    if (!commandFrame.equals(currentCommand)){
+	    	getLogger().info("Move to new commanded frame.");
+		    lbr.move(ptp(commandFrame).setMode(impedanceControlMode).setJointVelocityRel(jointVelocityRel));
+	    }else {
+	    	getLogger().info("No change, no move. Commanded frame equals current.");
+	    }
 	    
 	    getLogger().info("Close connection to client");
 	    ds.close();  
@@ -103,29 +124,29 @@ public class UdpCartesianControl extends RoboticsAPIApplication {
 		}  
 	}
 	
-	private Frame getCommandFrame(Frame _currentFrame, DatagramSocket _ds){
-		Frame commandFrame = _currentFrame;
+	private Frame getCommandFrame(Frame _currentCommand, DatagramSocket _ds){
+		Frame commandFrame = _currentCommand;
 		byte[] buf = new byte[256];
 		
 		DatagramPacket dp = new DatagramPacket(buf, buf.length);
         try {
 			_ds.receive(dp);
 			String received = new String(dp.getData(), 0, dp.getLength());
-			if (received != null && !received.isEmpty()){
-				commandFrame = parseFrameCommand(received, _currentFrame);
+			if (received != null && !received.isEmpty() && received.length() > 10){
+				commandFrame = parseFrameCommand(received, _currentCommand);
 			}
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			getLogger().info("socket receive failed. check connection to ROS.");
 			e.printStackTrace();
 		}
         
         return commandFrame;
 	}
 	
-	private Frame parseFrameCommand(String str, Frame _currentFrame){
+	private Frame parseFrameCommand(String str, Frame _currentCommand){
 		boolean isSane = true;
-		Frame commandFrame = _currentFrame.copyWithRedundancy();
+		Frame commandFrame = _currentCommand.copyWithRedundancy();
 		
 		String[] strArray = str.split("\\s+");
         int strIndex = 0;
@@ -163,7 +184,7 @@ public class UdpCartesianControl extends RoboticsAPIApplication {
         if (isSane){
         	return commandFrame;
         }else {
-        	return _currentFrame;
+        	return _currentCommand;
         }
 		
 		
