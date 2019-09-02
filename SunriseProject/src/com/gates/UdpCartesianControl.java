@@ -57,7 +57,9 @@ public class UdpCartesianControl extends RoboticsAPIApplication {
 		// initialize your application here
 		getLogger().info("Initialize..");
 		
-		externalPcIp = "172.31.1.150";
+		lbr = getContext().getDeviceFromType(LBR.class);
+		
+		externalPcIp = "172.31.1.53";
 		udpPort = 30001;
 		
 		getLogger().info("Create datagram socket");

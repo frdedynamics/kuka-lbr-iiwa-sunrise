@@ -2,12 +2,44 @@
 <RoboticsAPIData version="3">
     <world>
         <gravitation x="0.0" y="0.0" z="9.81"/>
+        <frame id="_5923e15a-47ef-4ddd-abab-9c655027b55e" name="Tiger_Woods_Swing_Top">
+            <transformation a="-2.791008727757975" b="-0.08605069875141164" c="0.5745964965063084" x="-84.40271435921261" y="-236.24239812219463" z="941.3861866827858"/>
+            <additionalInformation>
+                <info key="LastModificationTime" type="java.lang.Long" value="1567419706490"/>
+                <info base="LBR_iiwa_14_R820_1" controller="KUKA_Sunrise_Cabinet_1" device="LBR_iiwa_14_R820_1" tcpName="SchunkCoActGripper/TCP" tool="SchunkCoActGripper" type="com.kuka.roboticsAPI.deviceModel.TeachInformation">
+                    <tcpTransformation a="-1.05" b="0.0" c="0.0" x="0.0" y="0.0" z="167.0"/>
+                </info>
+            </additionalInformation>
+            <redundancyData>
+                <redundancy transformationProviderName="KUKA_Sunrise_Cabinet_1/LBR_iiwa_14_R820_1" type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy">
+                    <info type="com.kuka.roboticsAPI.deviceModel.StatusTurnRedundancy$StatusParameter" value="4" valueType="java.lang.Integer"/>
+                    <info type="com.kuka.roboticsAPI.deviceModel.StatusTurnRedundancy$TurnParameter" value="97" valueType="java.lang.Integer"/>
+                    <info type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy$E1Parameter" value="0.1304576358157988" valueType="java.lang.Double"/>
+                </redundancy>
+            </redundancyData>
+        </frame>
+        <frame id="_28e3da01-daf6-4c7a-9055-a4d44ddcb1dc" name="Tiger_Woods_Swing_Bottom">
+            <transformation a="-2.700047562027461" b="0.056456049144404455" c="0.13735323374937278" x="-58.82106923457667" y="-561.0924877542506" z="1071.466257522523"/>
+            <additionalInformation>
+                <info key="LastModificationTime" type="java.lang.Long" value="1567419715271"/>
+                <info base="LBR_iiwa_14_R820_1" controller="KUKA_Sunrise_Cabinet_1" device="LBR_iiwa_14_R820_1" tcpName="SchunkCoActGripper/TCP" tool="SchunkCoActGripper" type="com.kuka.roboticsAPI.deviceModel.TeachInformation">
+                    <tcpTransformation a="-1.05" b="0.0" c="0.0" x="0.0" y="0.0" z="167.0"/>
+                </info>
+            </additionalInformation>
+            <redundancyData>
+                <redundancy transformationProviderName="KUKA_Sunrise_Cabinet_1/LBR_iiwa_14_R820_1" type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy">
+                    <info type="com.kuka.roboticsAPI.deviceModel.StatusTurnRedundancy$StatusParameter" value="4" valueType="java.lang.Integer"/>
+                    <info type="com.kuka.roboticsAPI.deviceModel.StatusTurnRedundancy$TurnParameter" value="97" valueType="java.lang.Integer"/>
+                    <info type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy$E1Parameter" value="0.08910912373718985" valueType="java.lang.Double"/>
+                </redundancy>
+            </redundancyData>
+        </frame>
     </world>
     <objectTemplates>
         <toolTemplate class="com.kuka.grippertoolbox.gripper.CustomIoGripper" defaultMotionFrameRef="/TCP" name="SchunkCoActGripper">
             <frames>
                 <frame id="_2142cb7c-e35e-412d-a6a6-ec722f70a17a" name="TCP">
-                    <transformation a="-1.05" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
+                    <transformation a="-1.05" b="0.0" c="0.0" x="0.0" y="0.0" z="167.0"/>
                 </frame>
             </frames>
             <additionalInformation>
