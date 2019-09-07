@@ -17,7 +17,7 @@ import com.kuka.roboticsAPI.motionModel.IMotionContainer;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.CartesianImpedanceControlMode;
 import com.kuka.roboticsAPI.uiModel.ApplicationDialogType;
 
-public class GameBoxOrBall extends RoboticsAPIApplication {
+public class GameMagneticBox extends RoboticsAPIApplication {
 	
 	@Inject
 	private AbstractGripper gripper;
