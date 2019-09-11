@@ -6,23 +6,22 @@ import java.util.ListIterator;
 
 import javax.inject.Inject;
 
+import com.kuka.common.params.IParameterSet;
 import com.kuka.generated.ioAccess.MediaFlangeIOGroup;
 import com.kuka.grippertoolbox.api.gripper.AbstractGripper;
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
 
-import static com.kuka.roboticsAPI.motionModel.HRCMotions.handGuiding;
-
 import static com.kuka.roboticsAPI.motionModel.BasicMotions.ptp;
 
-import com.kuka.roboticsAPI.controllerModel.sunrise.SunriseSafetyState.EnablingDeviceState;
 import com.kuka.roboticsAPI.deviceModel.LBR;
 import com.kuka.roboticsAPI.geometricModel.CartDOF;
 import com.kuka.roboticsAPI.geometricModel.Frame;
-import com.kuka.roboticsAPI.motionModel.HandGuidingMotion;
+import com.kuka.roboticsAPI.motionModel.IMotionContainer;
+import com.kuka.roboticsAPI.motionModel.PositionHold;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.CartesianImpedanceControlMode;
 import com.kuka.roboticsAPI.uiModel.ApplicationDialogType;
 
-public class GamePickAndPlace extends RoboticsAPIApplication {
+public class GamePickAndPlaceV2 extends RoboticsAPIApplication {
 	
 	@Inject
 	private AbstractGripper gripper;
@@ -31,9 +30,7 @@ public class GamePickAndPlace extends RoboticsAPIApplication {
 	private MediaFlangeIOGroup media_flange;
 	
 	private static final double relSpeed = 0.2;
-	private static final int mediumStiffnessZ = 300;
-	private static final int mediumStiffnessY = 300;
-	private static final int mediumStiffnessX = 300;
+	private static final int mediumStiffness = 300;
 
 	final static double offsetAxis2And4=Math.toRadians(10);
 	private static double[] startPosition=new double[]{0,offsetAxis2And4,0,offsetAxis2And4-Math.toRadians(90),0,Math.toRadians(90),0};
@@ -77,9 +74,9 @@ public class GamePickAndPlace extends RoboticsAPIApplication {
 		media_flange.setOutputX3Pin2(true); // red
 
 		CartesianImpedanceControlMode impedanceControlMode = new CartesianImpedanceControlMode();
-		impedanceControlMode.parametrize(CartDOF.X).setStiffness(mediumStiffnessX);
-		impedanceControlMode.parametrize(CartDOF.Y).setStiffness(mediumStiffnessY);
-		impedanceControlMode.parametrize(CartDOF.Z).setStiffness(mediumStiffnessZ);
+		impedanceControlMode.parametrize(CartDOF.ALL).setStiffness(mediumStiffness);
+		impedanceControlMode.setNullSpaceDamping(0.7);
+		impedanceControlMode.setNullSpaceStiffness(90);
 		
 		getLogger().info("Move to start position.");	
 		gripper.move(ptp(startPosition).setJointVelocityRel(relSpeed).setMode(impedanceControlMode));
@@ -107,31 +104,15 @@ public class GamePickAndPlace extends RoboticsAPIApplication {
 		ArrayList<Frame> recordedFrames = new ArrayList<Frame>();
 		ArrayList<Boolean> recordedGripStates = new ArrayList<Boolean>();
 		
-		HandGuidingMotion handGuidingMotion;
-		handGuidingMotion = handGuiding()
-				.setJointLimitsMax(Math.toRadians(160), 
-						Math.toRadians(110), 
-						Math.toRadians(160), 
-						Math.toRadians(110), 
-						Math.toRadians(160), 
-						Math.toRadians(110),
-						Math.toRadians(165))
-				.setJointLimitsMin(Math.toRadians(-160), 
-						Math.toRadians(-110), 
-						Math.toRadians(-160), 
-						Math.toRadians(-110), 
-						Math.toRadians(-160), 
-						Math.toRadians(-110),
-						Math.toRadians(-165))
-				.setJointLimitsEnabled(true, true, true, true, true, true, true)
-				.setJointVelocityLimit(0.5)
-				.setJointLimitViolationFreezesAll(false)
-				.setPermanentPullOnViolationAtStart(true)
-				.setCartVelocityLimit(240);
-		getLogger().info(handGuidingMotion.getParams().toString());
+		impedanceControlMode.parametrize(CartDOF.ALL).setStiffness(0);
+		PositionHold posHold = new PositionHold(impedanceControlMode, -1, null);
+		
+		IParameterSet posHoldParams = posHold.getParams();
+		IMotionContainer positionHoldContainer = lbr.moveAsync(posHold);
+		getLogger().info(posHoldParams.toString());
 		while (true){
 			
-			if (lbr.getSafetyState().getEnablingDeviceState() == EnablingDeviceState.NONE ){
+			//if (lbr.getSafetyState().getEnablingDeviceState() == EnablingDeviceState.NONE ){
 				nowTimeMillis = (long) (System.nanoTime()/1e6);
 				currentGetUserButton = media_flange.getUserButton();
 				
@@ -152,14 +133,15 @@ public class GamePickAndPlace extends RoboticsAPIApplication {
 					media_flange.setLEDBlue(!media_flange.getInputX3Pin16());
 				}
 				
-			}else{
-				lbr.move(handGuidingMotion);
-			}
+			//}
 			
 			previousGetUserButton = currentGetUserButton;
 		}
 		
-		// replay, backwards
+		positionHoldContainer.cancel();
+		impedanceControlMode.parametrize(CartDOF.ALL).setStiffness(mediumStiffness);
+		
+		// replay, maybe backwards?
         gripper.releaseAsync();
 		getLogger().info("Move to start position.");
 		media_flange.setLEDBlue(false);
@@ -171,7 +153,7 @@ public class GamePickAndPlace extends RoboticsAPIApplication {
 		ListIterator<Frame> frameIter = recordedFrames.listIterator(recordedFrames.size());
 		ListIterator<Boolean> gripStateIter = recordedGripStates.listIterator(recordedGripStates.size());
 		
-		while (frameIter.hasPrevious()){
+		while (frameIter.hasPrevious()){ // try previous for backwards
 			gripper.move(ptp(frameIter.previous()).setJointVelocityRel(relSpeed).setMode(impedanceControlMode));
 			if (gripStateIter.previous()){
 				gripper.releaseAsync();

@@ -91,6 +91,8 @@ public class GameMagneticBox extends RoboticsAPIApplication {
 		impedanceControlMode.parametrize(CartDOF.X).setStiffness(mediumStiffnessX);
 		impedanceControlMode.parametrize(CartDOF.Y).setStiffness(mediumStiffnessY);
 		impedanceControlMode.parametrize(CartDOF.Z).setStiffness(mediumStiffnessZ);
+		impedanceControlMode.setNullSpaceDamping(1.0);
+		impedanceControlMode.setNullSpaceStiffness(90);
 		
 		getLogger().info("Move to zero position (point to the sky)");
 		gripper.move(ptp(0,0,0,0,0,0,0).setJointVelocityRel(0.2).setMode(impedanceControlMode));
