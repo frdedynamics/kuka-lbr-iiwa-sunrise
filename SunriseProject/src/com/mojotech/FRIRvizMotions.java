@@ -16,10 +16,12 @@ import static com.kuka.roboticsAPI.motionModel.BasicMotions.*;
 
 import com.kuka.roboticsAPI.deviceModel.LBR;
 import com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy;
+import com.kuka.roboticsAPI.geometricModel.CartDOF;
 import com.kuka.roboticsAPI.geometricModel.Frame;
 import com.kuka.roboticsAPI.motionModel.LIN;
 import com.kuka.roboticsAPI.motionModel.PTP;
 import com.kuka.roboticsAPI.motionModel.Spline;
+import com.kuka.roboticsAPI.motionModel.controlModeModel.CartesianImpedanceControlMode;
 import com.kuka.roboticsAPI.uiModel.ApplicationDialogType;
 
 /**
@@ -43,6 +45,10 @@ import com.kuka.roboticsAPI.uiModel.ApplicationDialogType;
 public class FRIRvizMotions extends RoboticsAPIApplication
 {
     private String _clientName;
+    
+    private static final int stiffnessZ = 2500;
+	private static final int stiffnessY = 700;
+	private static final int stiffnessX = 1500;
     
     final static double radiusOfCircMove=120;
 	final static int nullSpaceAngle = 80;
@@ -129,8 +135,14 @@ public class FRIRvizMotions extends RoboticsAPIApplication
         {
             return;
         }
+        
+        getLogger().info("Set impedance");
+		CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
+		impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
+		impedanceControlMode.parametrize(CartDOF.Y).setStiffness(stiffnessY);
+		impedanceControlMode.parametrize(CartDOF.Z).setStiffness(stiffnessZ);
         	
-        for (int i=0; i<10; i++){
+        for (int i=0; i<100; i++){
 			getLogger().info("Move to start position of the lemniscate motion");	
 			PTP ptpToLoopCenter = ptp(loopCenterPosition);
 			ptpToLoopCenter.setJointVelocityRel(0.25);
@@ -142,23 +154,27 @@ public class FRIRvizMotions extends RoboticsAPIApplication
 	
 			getLogger().info("Execute lemniscate motion");
 			lemniscateSpline.setJointVelocityRel(0.25);
+			lemniscateSpline.setMode(impedanceControlMode);
 			lbr.move(lemniscateSpline);
 	
 			getLogger().info("Move in nullspace -"+nullSpaceAngle+"?");		
 			Frame centerFrameWithChangedE1_1 = createChildFrameAndSetE1Offset(startFrame,Math.toRadians(-nullSpaceAngle));
 			LIN linToCenterFrameWithE1_1 = lin(centerFrameWithChangedE1_1);
 			linToCenterFrameWithE1_1.setJointVelocityRel(0.25);
+			linToCenterFrameWithE1_1.setMode(impedanceControlMode);
 			lbr.move(linToCenterFrameWithE1_1);
 	
 			getLogger().info("Move in nullspace "+nullSpaceAngle+"?");
 			Frame centerFrameWithChangedE1_2 = createChildFrameAndSetE1Offset(startFrame,Math.toRadians(nullSpaceAngle));
 			LIN linToCenterFrameWithE1_2 = lin(centerFrameWithChangedE1_2);
 			linToCenterFrameWithE1_2.setJointVelocityRel(0.25);
+			linToCenterFrameWithE1_2.setMode(impedanceControlMode);
 			lbr.move(linToCenterFrameWithE1_2);
 			
 			getLogger().info("Move to start position");
 			LIN linToStartFrame = lin(startFrame);
 			linToStartFrame.setJointVelocityRel(0.25);
+			linToStartFrame.setMode(impedanceControlMode);
 			lbr.move(linToStartFrame);
         }
 	}
