@@ -83,7 +83,7 @@ public class FRIRvizMotions extends RoboticsAPIApplication
     public void run()
     {
         FRIConfiguration friConfiguration = FRIConfiguration.createRemoteConfiguration(lbr, _clientName);
-        friConfiguration.setSendPeriodMilliSec(5);
+        friConfiguration.setSendPeriodMilliSec(1);
 
         friConfiguration.registerIO(friGroup.getInput("In_Bool_Clock_Enabled"));
         friConfiguration.registerIO(friGroup.getOutput("Out_Bool_Enable_Clock"));
