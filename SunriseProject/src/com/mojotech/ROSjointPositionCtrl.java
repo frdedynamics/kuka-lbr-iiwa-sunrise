@@ -18,6 +18,7 @@ import static com.kuka.roboticsAPI.motionModel.BasicMotions.*;
 
 import com.kuka.roboticsAPI.deviceModel.LBR;
 import com.kuka.roboticsAPI.motionModel.PTP;
+import com.kuka.roboticsAPI.motionModel.controlModeModel.JointImpedanceControlMode;
 import com.kuka.roboticsAPI.uiModel.ApplicationDialogType;
 
 /**
@@ -44,7 +45,7 @@ public class ROSjointPositionCtrl extends RoboticsAPIApplication
     
     final static double offsetAxis2And4=Math.toRadians(10);
 	//private static double[] startPosition=new double[]{0,offsetAxis2And4,0,offsetAxis2And4-Math.toRadians(90),0,Math.toRadians(90),0};
-	private static double[] startPosition=new double[]{0,0,0,0,0,0,Math.toRadians(2)};
+	//private static double[] startPosition=new double[]{0,0,0,0,0,0,Math.toRadians(2)};
     
     @Inject
     private LBR lbr;
@@ -67,6 +68,9 @@ public class ROSjointPositionCtrl extends RoboticsAPIApplication
     {
         FRIConfiguration friConfiguration = FRIConfiguration.createRemoteConfiguration(lbr, _clientName);
         friConfiguration.setSendPeriodMilliSec(5);
+        friConfiguration.setReceiveMultiplier(1);
+        //friConfiguration.setSendPeriodMilliSec(1);
+        //friConfiguration.setReceiveMultiplier(5);
 
         friConfiguration.registerIO(friGroup.getInput("In_Bool_Clock_Enabled"));
         friConfiguration.registerIO(friGroup.getOutput("Out_Bool_Enable_Clock"));
@@ -95,10 +99,14 @@ public class ROSjointPositionCtrl extends RoboticsAPIApplication
         }
         
         getLogger().info("Move to start position");
-		PTP ptpToStartPosition = ptp(startPosition);
+		PTP ptpToStartPosition = ptp(lbr.getCommandedJointPosition());
 		ptpToStartPosition.setJointVelocityRel(0.25);
 		lbr.move(ptpToStartPosition);
-        
+		
+		getLogger().info("Set impedance.");
+		JointImpedanceControlMode ctrMode = new JointImpedanceControlMode(2000, 2000, 2000, 2000, 2000, 2000, 2000);
+        ctrMode.setDamping(0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9);
+		
         getLogger().info("enable clock");
         ThreadUtil.milliSleep(5000);
         friGroup.setOut_Bool_Enable_Clock(true);
@@ -116,8 +124,8 @@ public class ROSjointPositionCtrl extends RoboticsAPIApplication
         }
         
         while (isCancel != 0){
-        	lbr.move(ptpToStartPosition.setJointVelocityRel(0.2).addMotionOverlay(jointOverlay));
-        	isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, "Stawp?", "Yes", "Never!");
+        	lbr.moveAsync(ptpToStartPosition.addMotionOverlay(jointOverlay).setMode(ctrMode));
+        	//isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, "Stawp?", "Yes", "Never!");
         }
         getLogger().info("disable clock");
         friGroup.setOut_Bool_Enable_Clock(false);
