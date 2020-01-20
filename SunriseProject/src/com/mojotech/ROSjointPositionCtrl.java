@@ -78,7 +78,7 @@ public class ROSjointPositionCtrl extends RoboticsAPIApplication
     {
         FRIConfiguration friConfiguration = FRIConfiguration.createRemoteConfiguration(lbr, _clientName);
         friConfiguration.setSendPeriodMilliSec(1);
-        friConfiguration.setReceiveMultiplier(2);
+        friConfiguration.setReceiveMultiplier(1);
 
         friConfiguration.registerIO(friGroup.getInput("In_Bool_Clock_Enabled"));
         friConfiguration.registerIO(friGroup.getOutput("Out_Bool_Enable_Clock"));
