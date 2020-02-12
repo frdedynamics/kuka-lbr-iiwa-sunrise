@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import com.kuka.common.ThreadUtil;
 import com.kuka.connectivity.fastRobotInterface.FRIConfiguration;
 import com.kuka.connectivity.fastRobotInterface.FRISession;
-import com.kuka.connectivity.fri.example.FRIIOGroup;
 import com.kuka.generated.ioAccess.MediaFlangeIOGroup;
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
 import static com.kuka.roboticsAPI.motionModel.BasicMotions.*;
@@ -60,9 +59,6 @@ public class FRIsingleJoint extends RoboticsAPIApplication
     private LBR lbr;
     
     @Inject
-    private FRIIOGroup friGroup;
-    
-    @Inject
     private MediaFlangeIOGroup mediaFlange;
     
     @Override
@@ -78,11 +74,23 @@ public class FRIsingleJoint extends RoboticsAPIApplication
         FRIConfiguration friConfiguration = FRIConfiguration.createRemoteConfiguration(lbr, _clientName);
         friConfiguration.setSendPeriodMilliSec(1);
 
-        friConfiguration.registerIO(friGroup.getInput("In_Bool_Clock_Enabled"));
-        friConfiguration.registerIO(friGroup.getOutput("Out_Bool_Enable_Clock"));
-        friConfiguration.registerIO(friGroup.getOutput("Out_Integer_Seconds"));
-        friConfiguration.registerIO(friGroup.getOutput("Out_Analog_Deci_Seconds"));
-        friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin10"));
+        //friConfiguration.registerIO(friGroup.getInput("In_Bool_Clock_Enabled"));
+        //friConfiguration.registerIO(friGroup.getOutput("Out_Bool_Enable_Clock"));
+        //friConfiguration.registerIO(friGroup.getOutput("Out_Integer_Seconds"));
+        //friConfiguration.registerIO(friGroup.getOutput("Out_Analog_Deci_Seconds"));
+        
+        //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin3"));
+        //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin4"));
+        friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin10")); // Gripped without workpiece
+        //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin13"));
+        friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin16")); // Released
+        friConfiguration.registerIO(mediaFlange.getInput("UserButton"));
+        friConfiguration.registerIO(mediaFlange.getOutput("LEDBlue")); // setLEDBlue
+        //friConfiguration.registerIO(mediaFlange.getOutput("SwitchOffX3Voltage"));
+        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin1")); // Grip
+        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin2")); // Color
+        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin11")); // Release
+        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin12")); // Color
         
         getLogger().info("Creating FRI connection to " + friConfiguration.getHostName());
         getLogger().info("SendPeriod: " + friConfiguration.getSendPeriodMilliSec() + "ms |"
@@ -103,15 +111,11 @@ public class FRIsingleJoint extends RoboticsAPIApplication
             return;
         }
         
-        getLogger().info("enable clock");
         ThreadUtil.milliSleep(5000);
-        friGroup.setOut_Bool_Enable_Clock(true);
         
         getLogger().info("do something ...");
         motions();
         
-        getLogger().info("disable clock");
-        friGroup.setOut_Bool_Enable_Clock(false);
         
         getLogger().info("Close connection to client");
         friSession.close();
