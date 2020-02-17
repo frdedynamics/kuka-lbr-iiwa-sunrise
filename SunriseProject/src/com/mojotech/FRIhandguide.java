@@ -145,14 +145,14 @@ public class FRIhandguide extends RoboticsAPIApplication
     public void daniel(){
     	
     	getLogger().info("Show modal dialog and wait for user to confirm");
-        int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, "Robot will open gripper and move to start position.", "OK", "Cancel");
+        int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, "Robot will move to start position.", "OK", "Cancel");
         if (isCancel == 1)
         {
             return;
         }
         
-    	getLogger().info("Open gripper");
-        gripper.releaseAsync();
+    	//getLogger().info("Open gripper");
+        //gripper.releaseAsync();
         
     	getLogger().info("Move to start position.");	
 		lbr.move(ptp(loopCenterPosition).setJointVelocityRel(0.25));
