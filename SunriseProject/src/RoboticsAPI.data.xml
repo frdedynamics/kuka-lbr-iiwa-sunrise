@@ -69,7 +69,6 @@
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TorqueX" id="Taux" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TorqueY" id="Tauy" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TorqueZ" id="Tauz" value="0.0"/>
-        
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TcpX" id="TcpX" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TcpY" id="TcpY" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TcpZ" id="TcpZ" value="0.0"/>
@@ -77,7 +76,6 @@
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TcpB" id="TcpB" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TcpC" id="TcpC" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="TcpE" id="TcpE" value="0.0"/>
-
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="Target joint 1 [deg]" id="tj1" value="-113.4853"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="Target joint 2 [deg]" id="tj2" value="52.2236"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="Target joint 3 [deg]" id="tj3" value="-10.5281"/>
@@ -85,5 +83,5 @@
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="Target joint 5 [deg]" id="tj5" value="16.0831"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="Target joint 6 [deg]" id="tj6" value="47.9238"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="Target joint 7 [deg]" id="tj7" value="-115.8299"/>
-	</processDataContainer>
+    </processDataContainer>
 </RoboticsAPIData>
