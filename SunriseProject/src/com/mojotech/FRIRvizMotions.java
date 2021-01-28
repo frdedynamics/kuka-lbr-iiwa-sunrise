@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import com.kuka.common.ThreadUtil;
 import com.kuka.connectivity.fastRobotInterface.FRIConfiguration;
 import com.kuka.connectivity.fastRobotInterface.FRISession;
+import com.kuka.generated.ioAccess.AtiAxiaFtSensorIOGroup;
 import com.kuka.generated.ioAccess.MediaFlangeIOGroup;
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
 import static com.kuka.roboticsAPI.motionModel.BasicMotions.*;
@@ -45,6 +46,8 @@ public class FRIRvizMotions extends RoboticsAPIApplication
 {
     private String _clientName;
     
+    private long Ati_Control1 = 0;
+    
     private static final int stiffnessZ = 2500;
 	private static final int stiffnessY = 700;
 	private static final int stiffnessX = 1500;
@@ -68,11 +71,19 @@ public class FRIRvizMotions extends RoboticsAPIApplication
     @Inject
     private MediaFlangeIOGroup mediaFlange;
     
+    @Inject
+    private AtiAxiaFtSensorIOGroup ati_axia_ft_sensor;
+    
     @Override
     public void initialize()
     {
         _clientName = "192.170.10.86";
         mediaFlange = new MediaFlangeIOGroup(lbr.getController());
+        ati_axia_ft_sensor = new AtiAxiaFtSensorIOGroup(lbr.getController());
+        
+        int tmp = getApplicationData().getProcessData("Ati_Control1").getValue();
+        Ati_Control1 = Long.valueOf(tmp);
+        ati_axia_ft_sensor.setControl1(Ati_Control1);
     }
 
     @Override
@@ -88,16 +99,25 @@ public class FRIRvizMotions extends RoboticsAPIApplication
         
         //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin3"));
         //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin4"));
-        friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin10")); // Gripped without workpiece
+        // - friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin10")); // Gripped without workpiece
         //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin13"));
-        friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin16")); // Released
-        friConfiguration.registerIO(mediaFlange.getInput("UserButton"));
-        friConfiguration.registerIO(mediaFlange.getOutput("LEDBlue")); // setLEDBlue
+     // - friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin16")); // Released
+     // - friConfiguration.registerIO(mediaFlange.getInput("UserButton"));
+     // - friConfiguration.registerIO(mediaFlange.getOutput("LEDBlue")); // setLEDBlue
         //friConfiguration.registerIO(mediaFlange.getOutput("SwitchOffX3Voltage"));
-        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin1")); // Grip
-        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin2")); // Color
-        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin11")); // Release
-        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin12")); // Color
+     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin1")); // Grip
+     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin2")); // Color
+     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin11")); // Release
+     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin12")); // Color
+        
+        friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Fx"));
+        friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Fy"));
+        friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Fz"));
+        friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Tx"));
+        friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Ty"));
+        friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Tz"));
+     // - friConfiguration.registerIO(ati_axia_ft_sensor.getInput("SampleCounter"));
+     // - friConfiguration.registerIO(ati_axia_ft_sensor.getInput("StatusCode"));
         
         getLogger().info("Creating FRI connection to " + friConfiguration.getHostName());
         getLogger().info("SendPeriod: " + friConfiguration.getSendPeriodMilliSec() + "ms |"
