@@ -72,9 +72,9 @@
         <processData dataType="java.lang.Integer" defaultValue="0" displayName="Ati Control 1" id="Ati_Control1" value="0"/>
         <processData dataType="java.lang.Boolean" defaultValue="false" displayName="Ati Bias" id="Ati_Bias" value="false"/>
         <processData dataType="java.lang.Boolean" defaultValue="false" displayName="Ati Clear Bias" id="Ati_Clear_Bias" value="false"/>
-        <processData dataType="java.lang.Integer" defaultValue="0" displayName="Ati LP Filter Selction" id="Ati_Lp_Filter" value="0" max="8" min="0"/>
-        <processData dataType="java.lang.Integer" defaultValue="0" displayName="Ati Calibration Slot" id="Ati_Cal" value="0" max="1" min="0"/>
-        <processData dataType="java.lang.Integer" defaultValue="0" displayName="Ati Sample Rate Selction" id="Ati_Rate" value="0" max="3" min="0"/>
+        <processData dataType="java.lang.Integer" defaultValue="1" displayName="Ati LP Filter Selction" id="Ati_Lp_Filter" value="1" max="8" min="0"/>
+        <processData dataType="java.lang.Integer" defaultValue="1" displayName="Ati Calibration Slot" id="Ati_Cal" value="1" max="1" min="0"/>
+        <processData dataType="java.lang.Integer" defaultValue="3" displayName="Ati Sample Rate Selction" id="Ati_Rate" value="3" max="3" min="0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="ForceX_Ati" id="Fx_Ati" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="ForceY_Ati" id="Fy_Ati" value="0.0"/>
         <processData dataType="java.lang.Double" defaultValue="0.0" displayName="ForceZ_Ati" id="Fz_Ati" value="0.0"/>

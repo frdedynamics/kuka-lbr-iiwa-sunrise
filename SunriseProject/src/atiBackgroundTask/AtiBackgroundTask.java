@@ -30,7 +30,6 @@ public class AtiBackgroundTask extends RoboticsAPICyclicBackgroundTask {
 	
 	private int Ctrl1 = 0;
 	private static int Ctrl1_prev = 0;
-	
 	private int Ati_Lp_Filter = 0;
 	private int Ati_Cal = 0;
 	private int Ati_Rate = 0;
