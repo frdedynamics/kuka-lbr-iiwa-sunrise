@@ -32,30 +32,8 @@ public class AtiBackgroundTask extends RoboticsAPICyclicBackgroundTask {
 	private int Ati_Lp_Filter = 0;
 	private int Ati_Cal = 0;
 	private int Ati_Rate = 0;
-	
-	private double raw_max = 2147483647.0;
-	private double raw_min = -2147483648.0;
-	private double Fx_max_N = 500.0;
-	private double Fx_min_N = -Fx_max_N;
-	private double Fy_max_N = Fx_max_N;
-	private double Fy_min_N = Fx_min_N;
-	private double Fz_max_N = 900.0;
-	private double Fz_min_N = -Fz_max_N;
-	   
-	private double Tx_max_Nm = 20.0;
-	private double Tx_min_Nm = -Tx_max_Nm;
-	private double Ty_max_Nm = Tx_max_Nm;
-	private double Ty_min_Nm = Tx_min_Nm;
-	private double Tz_max_Nm = Tx_max_Nm;
-	private double Tz_min_Nm = Tx_min_Nm;	
-	
-	private double Fx_scale = 0.0;
-	private double Fy_scale = 0.0;
-	private double Fz_scale = 0.0;
-	
-	private double Tx_scale = 0.0;
-	private double Ty_scale = 0.0;
-	private double Tz_scale = 0.0;
+	private double CountsPerForce = 1000000.0;
+	private double CountsPerTorque = CountsPerForce;
 	
 
 	@Override
@@ -119,70 +97,13 @@ public class AtiBackgroundTask extends RoboticsAPICyclicBackgroundTask {
 		
 		getApplicationData().getProcessData("Ati_Control1").setValue(Ctrl1);
 		
-		// See page 49, section 8.3 Calibration Ranges, Axia80-M20
-		if (Ati_Cal == 0){
-			
-			Fx_max_N = 500.0;
-			Fx_min_N = -Fx_max_N;
-			Fy_max_N = Fx_max_N;
-			Fy_min_N = Fx_min_N;
-			Fz_max_N = 900.0;
-			Fz_min_N = -Fz_max_N;
-			   
-			Tx_max_Nm = 20.0;
-			Tx_min_Nm = -Tx_max_Nm;
-			Ty_max_Nm = Tx_max_Nm;
-			Ty_min_Nm = Tx_min_Nm;
-			Tz_max_Nm = Tx_max_Nm;
-			Tz_min_Nm = Tx_min_Nm;		
+		getApplicationData().getProcessData("Fx_Ati").setValue(1.0*ati_axia_ft_sensor.getFx()/CountsPerForce);
+		getApplicationData().getProcessData("Fy_Ati").setValue(1.0*ati_axia_ft_sensor.getFy()/CountsPerForce);
+		getApplicationData().getProcessData("Fz_Ati").setValue(1.0*ati_axia_ft_sensor.getFz()/CountsPerForce);
 		
-		}else if (Ati_Cal == 1){
-			
-			Fx_max_N = 200.0;
-			Fx_min_N = -Fx_max_N;
-			Fy_max_N = Fx_max_N;
-			Fy_min_N = Fx_min_N;
-			Fz_max_N = 360.0;
-			Fz_min_N = -Fz_max_N;
-			   
-			Tx_max_Nm = 8.0;
-			Tx_min_Nm = -Tx_max_Nm;
-			Ty_max_Nm = Tx_max_Nm;
-			Ty_min_Nm = Tx_min_Nm;
-			Tz_max_Nm = Tx_max_Nm;
-			Tz_min_Nm = Tx_min_Nm;
-		}else {
-			Fx_max_N = raw_max;
-			Fx_min_N = -Fx_max_N;
-			Fy_max_N = Fx_max_N;
-			Fy_min_N = Fx_min_N;
-			Fz_max_N = raw_max;
-			Fz_min_N = -Fz_max_N;
-			   
-			Tx_max_Nm = raw_max;
-			Tx_min_Nm = -Tx_max_Nm;
-			Ty_max_Nm = Tx_max_Nm;
-			Ty_min_Nm = Tx_min_Nm;
-			Tz_max_Nm = Tx_max_Nm;
-			Tz_min_Nm = Tx_min_Nm;
-		}
-		
-		Fx_scale = (Fx_max_N - Fx_min_N)/(raw_max - raw_min);
-		Fy_scale = (Fy_max_N - Fy_min_N)/(raw_max - raw_min);
-		Fz_scale = (Fz_max_N - Fz_min_N)/(raw_max - raw_min);
-
-		Tx_scale = (Tx_max_Nm - Tx_min_Nm)/(raw_max - raw_min);
-		Ty_scale = (Ty_max_Nm - Ty_min_Nm)/(raw_max - raw_min);
-		Tz_scale = (Tz_max_Nm - Tz_min_Nm)/(raw_max - raw_min);
-
-		
-		getApplicationData().getProcessData("Fx_Ati").setValue(1.0*ati_axia_ft_sensor.getFx()*Fx_scale);
-		getApplicationData().getProcessData("Fy_Ati").setValue(1.0*ati_axia_ft_sensor.getFy()*Fy_scale);
-		getApplicationData().getProcessData("Fz_Ati").setValue(1.0*ati_axia_ft_sensor.getFz()*Fz_scale);
-		
-		getApplicationData().getProcessData("Taux_Ati").setValue(1.0*ati_axia_ft_sensor.getTx()*Tx_scale);
-		getApplicationData().getProcessData("Tauy_Ati").setValue(1.0*ati_axia_ft_sensor.getTy()*Ty_scale);
-		getApplicationData().getProcessData("Tauz_Ati").setValue(1.0*ati_axia_ft_sensor.getTz()*Tz_scale);
+		getApplicationData().getProcessData("Taux_Ati").setValue(1.0*ati_axia_ft_sensor.getTx()/CountsPerTorque);
+		getApplicationData().getProcessData("Tauy_Ati").setValue(1.0*ati_axia_ft_sensor.getTy()/CountsPerTorque);
+		getApplicationData().getProcessData("Tauz_Ati").setValue(1.0*ati_axia_ft_sensor.getTz()/CountsPerTorque);
 
 	}
 }
