@@ -46,8 +46,6 @@ public class FRIRvizMotions extends RoboticsAPIApplication
 {
     private String _clientName;
     
-    private long Ati_Control1 = 0;
-    
     private static final int stiffnessZ = 2500;
 	private static final int stiffnessY = 700;
 	private static final int stiffnessX = 1500;
@@ -80,10 +78,6 @@ public class FRIRvizMotions extends RoboticsAPIApplication
         _clientName = "192.170.10.86";
         mediaFlange = new MediaFlangeIOGroup(lbr.getController());
         ati_axia_ft_sensor = new AtiAxiaFtSensorIOGroup(lbr.getController());
-        
-        int tmp = getApplicationData().getProcessData("Ati_Control1").getValue();
-        Ati_Control1 = Long.valueOf(tmp);
-        ati_axia_ft_sensor.setControl1(Ati_Control1);
     }
 
     @Override

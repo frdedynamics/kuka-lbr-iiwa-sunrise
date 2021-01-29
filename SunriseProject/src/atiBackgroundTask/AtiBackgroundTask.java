@@ -29,6 +29,8 @@ public class AtiBackgroundTask extends RoboticsAPICyclicBackgroundTask {
     private AtiAxiaFtSensorIOGroup ati_axia_ft_sensor;
 	
 	private int Ctrl1 = 0;
+	private static int Ctrl1_prev = 0;
+	
 	private int Ati_Lp_Filter = 0;
 	private int Ati_Cal = 0;
 	private int Ati_Rate = 0;
@@ -96,6 +98,10 @@ public class AtiBackgroundTask extends RoboticsAPICyclicBackgroundTask {
 		}
 		
 		getApplicationData().getProcessData("Ati_Control1").setValue(Ctrl1);
+		if (Ctrl1 != Ctrl1_prev){
+			ati_axia_ft_sensor.setControl1(Long.valueOf(Ctrl1));
+		}
+		Ctrl1_prev = Ctrl1;
 		
 		getApplicationData().getProcessData("Fx_Ati").setValue(1.0*ati_axia_ft_sensor.getFx()/CountsPerForce);
 		getApplicationData().getProcessData("Fy_Ati").setValue(1.0*ati_axia_ft_sensor.getFy()/CountsPerForce);
