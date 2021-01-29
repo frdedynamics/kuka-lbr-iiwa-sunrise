@@ -93,16 +93,16 @@ public class FRIRvizMotions extends RoboticsAPIApplication
         
         //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin3"));
         //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin4"));
-        // - friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin10")); // Gripped without workpiece
+        //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin10")); // Gripped without workpiece
         //friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin13"));
-     // - friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin16")); // Released
-     // - friConfiguration.registerIO(mediaFlange.getInput("UserButton"));
-     // - friConfiguration.registerIO(mediaFlange.getOutput("LEDBlue")); // setLEDBlue
+        friConfiguration.registerIO(mediaFlange.getInput("InputX3Pin16")); // Released
+        friConfiguration.registerIO(mediaFlange.getInput("UserButton"));
+        //friConfiguration.registerIO(mediaFlange.getOutput("LEDBlue")); // setLEDBlue
         //friConfiguration.registerIO(mediaFlange.getOutput("SwitchOffX3Voltage"));
-     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin1")); // Grip
-     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin2")); // Color
-     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin11")); // Release
-     // - friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin12")); // Color
+        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin1")); // Grip
+        //friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin2")); // Color
+        friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin11")); // Release
+        //friConfiguration.registerIO(mediaFlange.getOutput("OutputX3Pin12")); // Color
         
         friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Fx"));
         friConfiguration.registerIO(ati_axia_ft_sensor.getInput("Fy"));
