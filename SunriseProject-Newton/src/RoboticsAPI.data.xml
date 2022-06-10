@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<RoboticsAPIData version="3">
+    <world>
+        <gravitation x="0.0" y="0.0" z="9.81"/>
+    </world>
+    <objectTemplates>
+        <toolTemplate class="com.kuka.grippertoolbox.gripper.CustomIoGripper" defaultMotionFrameRef="/TCP" name="FestoHGPL1440A">
+            <frames>
+                <frame id="_d3567d25-0927-4ed9-9164-2b41714e947f" name="TCP">
+                    <transformation a="0.57" b="0.0" c="0.0" x="-0.0" y="-0.0" z="222.24769834276591"/>
+                    <additionalInformation>
+                        <info key="Radius" type="java.lang.Integer" value="30"/>
+                    </additionalInformation>
+                </frame>
+            </frames>
+            <additionalInformation>
+                <info key="gtb.templateId" type="java.lang.String" value="FestoHGPL1440A"/>
+                <info key="SafetyID" type="java.lang.Integer" value="0"/>
+            </additionalInformation>
+            <userInformation>
+                <info key="gtb.type" type="java.lang.String" value="pneumatic"/>
+                <info key="gtb.output.GRIP" type="java.lang.String" value="MediaFlange.OutputX3Pin1"/>
+                <info key="gtb.output.RELEASE" type="java.lang.String" value="MediaFlange.OutputX3Pin11"/>
+                <info key="gtb.input.GRIPPED" type="java.lang.String" value="Unused"/>
+                <info key="gtb.input.GRIPPED_ITEM" type="java.lang.String" value="MediaFlange.InputX3Pin10"/>
+                <info key="gtb.input.RELEASED" type="java.lang.String" value="MediaFlange.InputX3Pin16"/>
+                <info key="gtb.parameter.DEBOUNCE_TIME" type="java.lang.Long" value="200"/>
+                <info key="gtb.parameter.STATE_TIMEOUT" type="java.lang.Long" value="1000"/>
+                <info key="gtb.parameter.IO_TIMEOUT" type="java.lang.Long" value="1000"/>
+            </userInformation>
+            <loadData cogA="0.0" cogB="0.0" cogC="0.0" cogX="4.372972673409618" cogY="9.191906744234384" cogZ="72.62345737332356" inertiaX="0.00103" inertiaY="0.00151" inertiaZ="0.00105" mass="1.477513746048799"/>
+        </toolTemplate>
+    </objectTemplates>
+</RoboticsAPIData>
