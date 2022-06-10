@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SunriseIOGroupDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0">
+  <IOGroup DisplayName="ZimmerR840" IconName="ZimmerR840" SignalTypes="InOut" TemplateName="ZimmerR840new">
+    <IOs>
+      <DigitalIOItem Name="CurrentActualValue" DataType="INT" IOType="Input" UsedBitWidth="16" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
+      <DigitalIOItem Name="ControlWord" DataType="UINT" IOType="Output" UsedBitWidth="16" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte3Bit0_STO_1" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Shows the state of the STO 1. </Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDOByte1Bit4_ToggleBit" DataType="BOOL" IOType="Output" UsedBitWidth="1" IsConnected="true">
+        <Description>Extends the ControlWord with additional bits. Toggle bit is used as an alive signal.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit0_IsReferenced" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Shows if the gripper is referenced.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDOByte1Bit7_ParameterStrobe" DataType="BOOL" IOType="Output" UsedBitWidth="1" IsConnected="true">
+        <Description>Extends the ControlWord with additional bits. Parameter strobe is used to trigger a handshake protokol to write parameters.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDOByte3_TargetValue" DataType="UINT" IOType="Output" UsedBitWidth="16" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDOByte2_ParameterID" DataType="USINT" IOType="Output" UsedBitWidth="4" IsConnected="true">
+        <Description>ExtendedDigitalOutput Byte 2 Bit 0 to 3 - Used to chose a parameter</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDOByte2_MotionProfile" DataType="USINT" IOType="Output" UsedBitWidth="4" IsConnected="true">
+        <Description>ExtendedDigitalOutput Byte 2 Bit 4 to 7 - Used to trigger motion profiles</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit1_Moving" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Shows if the gripper is moving.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit2_ProgramError" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Indicates a program error.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit3_CurrentLimitation" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Initcates if the current limitation is active</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit4_Toggle" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Shows if the controller is running (alive bit)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit5_SoftwareLimitNeg" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Shows if the outer software limit is reached.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit7_ParameterAck" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>ParameterAck is used to acknowledge a handshake protokol to write parameters.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte1Bit6_SoftwareLimitPos" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Shows if the inner software limit is reached.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte2_2_MotionProfile" DataType="USINT" IOType="Input" UsedBitWidth="4" IsConnected="true">
+        <Description>ExtendedDigitalInput Byte 2 Bit 4 to 7 - Used to show the active motion profile</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte2_1_ParameterID" DataType="USINT" IOType="Input" UsedBitWidth="4" IsConnected="true">
+        <Description>ExtendedDigitalInput Byte 2 Bit 0 to 3 - Used to show a parameter</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="HelpDI_IdValue" DataType="UINT" IOType="Input" UsedBitWidth="16" IsConnected="true">
+        <Description>These two byte are used to transmit the actual value of a specific parameter or the error value of PE, MF or EC.</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit00_ReadyToSwitchOn" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit01_SwitchedOn" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit02_OperationEnabled" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit03_MotorFailure" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit04_VoltageEnabled" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit05_QuickStop" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit06_SwitchOnDisabled" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit07_Warning" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord)</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit10_TargetReached" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord).</Description>
+      </DigitalIOItem>
+      <DigitalIOItem Name="SWBit11_InternalLimitActive" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Specific bit of the SW (StatausWord).</Description>
+      </DigitalIOItem>
+	  <DigitalIOItem Name="VelocityActualValue" DataType="DINT" IOType="Input" UsedBitWidth="32" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
+	  <DigitalIOItem Name="PositionActualValue" DataType="DINT" IOType="Input" UsedBitWidth="32" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
+	  <DigitalIOItem Name="FollowingErrorActualValue" DataType="DINT" IOType="Input" UsedBitWidth="32" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
+      <DigitalIOItem Name="EDIByte3Bit1_STO_2" DataType="BOOL" IOType="Input" UsedBitWidth="1" IsConnected="true">
+        <Description>Shows the state of the STO 2. </Description>
+      </DigitalIOItem>
+    </IOs>
+    <Description>This I/O Group contains the In-/Outputs which are used for controlling the gripper zimmer R840.
+     
+ IMPORTANT: The Signal Group must have the name "ZimmerR840", if its intended to import the delivered partial project.</Description>
+  </IOGroup>
+</SunriseIOGroupDescription>
