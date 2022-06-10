@@ -1,1 +1,5 @@
-
+SunriseProject/
+!SunriseProject/
+!SunriseProject/src/
+!SunriseProject/src/*
+!SunriseProject/src/**/*
