@@ -1,0 +1,5 @@
+https://www.making.unsw.edu.au/learn/kuka-lbr-iiwa-learn-module/ - Introduction guide to the Kuka iiwa
+
+https://github.com/nnadeau/kuka-lbr-examples - Some example scripts for Kuka Sunrise (scripts have some errors) 
+https://github.com/Modi1987/KST-Kuka-Sunrise-Toolbox - Matlab Toolbox for controlling the Kuka (haven't tested it yet)
+https://github.com/IFL-CAMP/iiwa_stack/wiki - ROS Control of the Kuka (haven't tested it yet)
