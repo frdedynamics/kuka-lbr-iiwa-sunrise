@@ -28,9 +28,18 @@ public class RedundancyImpedanceMove extends RoboticsAPIApplication {
 
 	public void initialize() {
 		lbr = getContext().getDeviceFromType(LBR.class);
+		boolean gripper_init = gripper.initialize();
+		if (gripper_init) {
+			getLogger().info("Gripper initialized");
+		}
+		else {
+			getLogger().info("Gripper initialization failed");
+		}
 	}
 
 	public void run() {
+		
+		
 		gripper.attachTo(lbr.getFlange());
 		
 		// move to forward starting pose
@@ -72,14 +81,18 @@ public class RedundancyImpedanceMove extends RoboticsAPIApplication {
 			linToFirstFrame.setJointVelocityRel(0.5);
 			linToFirstFrame.setMode(controlMode);
 			gripper.move(linToFirstFrame);
+			gripper.gripAsync();
 			
 			LIN linToSecondFrame = lin(secondFrame);
 			linToSecondFrame.setJointVelocityRel(0.5);
 			linToSecondFrame.setMode(controlMode);
 			gripper.move(linToSecondFrame);
+			gripper.releaseAsync();
 			
 			runLoop++;
 		}
+		
+		
 		
 		
 		
