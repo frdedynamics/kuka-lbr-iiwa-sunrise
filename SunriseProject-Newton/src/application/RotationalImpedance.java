@@ -1,5 +1,8 @@
 package application;
 
+import javax.inject.Inject;
+
+import com.kuka.grippertoolbox.api.gripper.AbstractGripper;
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
 import static com.kuka.roboticsAPI.motionModel.BasicMotions.*;
 
@@ -15,16 +18,19 @@ public class RotationalImpedance extends RoboticsAPIApplication {
 	private LBR lbr;
 	private Tool tool;
 	private static double[] startPosition=new double[]{Math.toRadians(-1.28), Math.toRadians(40.86), Math.toRadians(1.69), Math.toRadians(-83.23), Math.toRadians(1.77), Math.toRadians(-32.53), -0.57};
-
+	@Inject
+	private AbstractGripper gripper;
 
 	public void initialize() {
 		lbr = getContext().getDeviceFromType(LBR.class);
 		//tool = getApplicationData().createFromTemplate("tool");
+		
 	}
 
 	public void run() {
 		// load tool
-		tool.attachTo(lbr.getFlange());
+		gripper.attachTo(lbr.getFlange());
+//		tool.attachTo(lbr.getFlange());
 		getLogger().info("Tool data loaded");
 
 		// move to forward starting pose
@@ -44,7 +50,7 @@ public class RotationalImpedance extends RoboticsAPIApplication {
 		controlMode.parametrize(CartDOF.ROT).setStiffness(stiffnessRot); //cartStiffnessRot
 
 		// hold impedance control until dialog is closed by user
-		final IMotionContainer motionContainer = tool.moveAsync((new PositionHold(controlMode, -1, null))); //pointer.moveAsync
+		final IMotionContainer motionContainer = gripper.moveAsync((new PositionHold(controlMode, -1, null))); //pointer.moveAsync
 		getLogger().info("Show modal dialog while executing position hold");
 		getApplicationUI().displayModalDialog(ApplicationDialogType.INFORMATION, "Press ok to finish the application.",
 				"OK");
