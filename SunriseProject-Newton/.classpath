@@ -5,77 +5,77 @@
 	<classpathentry kind="lib" path="KUKAJavaLib/javax.inject_1.0.0.v20091030.jar"/>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.appframework.api_1.1.0.2.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.appframework.api_1.1.0.2-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.appframework.api_1.1.0.2-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.basictoolbox_1.1.0.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.basictoolbox_1.1.0-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.basictoolbox_1.1.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.collisiondetection_1.1.0.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.collisiondetection_1.1.0-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.collisiondetection_1.1.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.command.api_1.0.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.command.api_1.0.0.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.command.api_1.0.0.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.common.datatypes_1.15.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.common.datatypes_1.15.0.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.common.datatypes_1.15.0.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.common.utilities_1.5.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.common.utilities_1.5.0.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.common.utilities_1.5.0.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.grippertoolbox.api_1.3.0.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.grippertoolbox.api_1.3.0-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.grippertoolbox.api_1.3.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.grippertoolbox.gripper_1.3.0.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.grippertoolbox.gripper_1.3.0-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.grippertoolbox.gripper_1.3.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.mastering.provider.api_1.5.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/#Bundle-JavaDoc#!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/#Bundle-JavaDoc#!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.resource.api_1.0.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.resource.api_1.0.0.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.resource.api_1.0.0.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.roboticsAPI_1.15.2.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.roboticsAPI_1.15.2.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.roboticsAPI_1.15.2.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.roboticsAPI.handGuiding_1.16.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.roboticsAPI.handGuiding_1.16.0.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.roboticsAPI.handGuiding_1.16.0.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.sunrise.common_1.0.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.sunrise.common_1.0.0.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.sunrise.common_1.0.0.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.task.api_1.0.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/com.kuka.task.api_1.0.0.15-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/com.kuka.task.api_1.0.0.15-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="KUKAJavaLib/com.kuka.jogging.provider.api_1.0.0.15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-empty/SunriseProject-Newton/KUKAJavaLib/#Bundle-JavaDoc#!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/SunriseProject-Newton/KUKAJavaLib/#Bundle-JavaDoc#!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

@@ -271,7 +271,7 @@
             <SoftwareItem autoSelected="true" canChangeSelection="true" displayName="SafetyDiagnose" installItem="true" installedVersion="1" itemPath="com.kuka/SafetyDiagnose" selectedVersion="1" usage="Feature">
                 <Interface id="com.kuka/SafetyDiagnose/KRC4SafetyDiagnose" version="0.1.0"/>
             </SoftwareItem>
-            <SoftwareItem autoSelected="true" canChangeSelection="true" displayName="Human Robot Collaboration" installItem="false" installedVersion="NONE" itemPath="com.kuka/SafetyHRC" selectedVersion="NONE" usage="Feature"/>
+            <SoftwareItem autoSelected="true" canChangeSelection="true" displayName="Human Robot Collaboration" installItem="true" installedVersion="1" itemPath="com.kuka/SafetyHRC" selectedVersion="1" usage="Feature"/>
             <SoftwareItem autoSelected="true" canChangeSelection="false" displayName="Safety Signal Observer LBR" installItem="true" installedVersion="1" itemPath="com.kuka/SafetySignalObsLBR" selectedVersion="1" usage="Feature"/>
             <SoftwareItem autoSelected="true" canChangeSelection="true" displayName="smartHMI" installItem="true" installedVersion="1" itemPath="com.kuka/SmartHMI" selectedVersion="1" usage="Feature">
                 <Interface id="com.kuka/SmartHMI/SmartHMI" version="0.1.0"/>
