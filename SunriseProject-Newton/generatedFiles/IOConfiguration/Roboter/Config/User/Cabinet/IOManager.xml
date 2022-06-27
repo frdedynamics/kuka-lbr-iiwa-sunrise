@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IOManager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Version Label="">
+    <Info Version="IOManager V0.1.0" />
+    <Schema Version="1" />
+  </Version>
+  <WarnMultipleUsageOfInputs printWarning="false" />
+  <BusList>
+    <Bus BusDriverName="ECatIODriver" BusInstanceName="SYS-X48">
+      <IOList>
+        <DigitalIO Name="MediaFlange.InputX3Pin3" Type="INPUT" Scope="USER_IO" StartBit="547" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.InputX3Pin4" Type="INPUT" Scope="USER_IO" StartBit="548" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.InputX3Pin10" Type="INPUT" Scope="USER_IO" StartBit="544" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.InputX3Pin13" Type="INPUT" Scope="USER_IO" StartBit="546" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.InputX3Pin16" Type="INPUT" Scope="USER_IO" StartBit="545" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.LEDBlue" Type="OUTPUT" Scope="USER_IO" StartBit="12922" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.OutputX3Pin1" Type="OUTPUT" Scope="USER_IO" StartBit="12912" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.OutputX3Pin2" Type="OUTPUT" Scope="USER_IO" StartBit="12915" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.OutputX3Pin11" Type="OUTPUT" Scope="USER_IO" StartBit="12913" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.OutputX3Pin12" Type="OUTPUT" Scope="USER_IO" StartBit="12914" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.SwitchOffX3Voltage" Type="OUTPUT" Scope="USER_IO" StartBit="12926" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.UserButton" Type="INPUT" Scope="USER_IO" StartBit="549" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.LEDGreen" Type="OUTPUT" Scope="USER_IO" StartBit="12920" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+        <DigitalIO Name="MediaFlange.LEDRed" Type="OUTPUT" Scope="USER_IO" StartBit="12921" BitSize="1" Signed="false">
+          <Description />
+        </DigitalIO>
+      </IOList>
+    </Bus>
+  </BusList>
+</IOManager>

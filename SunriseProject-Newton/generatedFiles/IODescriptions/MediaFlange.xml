@@ -41,6 +41,12 @@ Automatically generated IO group description. Please do NOT modify!
       <DigitalIOItem Name="OutputX3Pin12" DataType="BOOL" IOType="Output" UsedBitWidth="1" IsConnected="true">
         <Description />
       </DigitalIOItem>
+      <DigitalIOItem Name="LEDRed" DataType="BOOL" IOType="Output" UsedBitWidth="1" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
+      <DigitalIOItem Name="LEDGreen" DataType="BOOL" IOType="Output" UsedBitWidth="1" IsConnected="true">
+        <Description />
+      </DigitalIOItem>
     </IOs>
     <Description>This I/O Group contains the In-/Outputs for the Media-Flange Touch.</Description>
   </IOGroup>

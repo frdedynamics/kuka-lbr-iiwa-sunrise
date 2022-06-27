@@ -41,6 +41,8 @@ public class MediaFlangeIOGroup extends AbstractIOGroup
 		addDigitalOutput("OutputX3Pin2", IOTypes.BOOLEAN, 1);
 		addDigitalOutput("OutputX3Pin11", IOTypes.BOOLEAN, 1);
 		addDigitalOutput("OutputX3Pin12", IOTypes.BOOLEAN, 1);
+		addDigitalOutput("LEDRed", IOTypes.BOOLEAN, 1);
+		addDigitalOutput("LEDGreen", IOTypes.BOOLEAN, 1);
 	}
 
 	/**
@@ -407,6 +409,88 @@ public class MediaFlangeIOGroup extends AbstractIOGroup
 	public void setOutputX3Pin12(java.lang.Boolean value)
 	{
 		setDigitalOutput("OutputX3Pin12", value);
+	}
+
+	/**
+	 * Gets the value of the <b>digital output '<i>LEDRed</i>'</b>.<br>
+	 * <i>This method is automatically generated. Please, do not modify!</i>
+	 * <p>
+	 * <b>I/O direction and type:</b><br>
+	 * digital output
+	 * <p>
+	 * <b>User description of the I/O:</b><br>
+	 * ./.
+	 * <p>
+	 * <b>Range of the I/O value:</b><br>
+	 * [false; true]
+	 *
+	 * @return current value of the digital output 'LEDRed'
+	 */
+	public boolean getLEDRed()
+	{
+		return getBooleanIOValue("LEDRed", true);
+	}
+
+	/**
+	 * Sets the value of the <b>digital output '<i>LEDRed</i>'</b>.<br>
+	 * <i>This method is automatically generated. Please, do not modify!</i>
+	 * <p>
+	 * <b>I/O direction and type:</b><br>
+	 * digital output
+	 * <p>
+	 * <b>User description of the I/O:</b><br>
+	 * ./.
+	 * <p>
+	 * <b>Range of the I/O value:</b><br>
+	 * [false; true]
+	 *
+	 * @param value
+	 *            the value, which has to be written to the digital output 'LEDRed'
+	 */
+	public void setLEDRed(java.lang.Boolean value)
+	{
+		setDigitalOutput("LEDRed", value);
+	}
+
+	/**
+	 * Gets the value of the <b>digital output '<i>LEDGreen</i>'</b>.<br>
+	 * <i>This method is automatically generated. Please, do not modify!</i>
+	 * <p>
+	 * <b>I/O direction and type:</b><br>
+	 * digital output
+	 * <p>
+	 * <b>User description of the I/O:</b><br>
+	 * ./.
+	 * <p>
+	 * <b>Range of the I/O value:</b><br>
+	 * [false; true]
+	 *
+	 * @return current value of the digital output 'LEDGreen'
+	 */
+	public boolean getLEDGreen()
+	{
+		return getBooleanIOValue("LEDGreen", true);
+	}
+
+	/**
+	 * Sets the value of the <b>digital output '<i>LEDGreen</i>'</b>.<br>
+	 * <i>This method is automatically generated. Please, do not modify!</i>
+	 * <p>
+	 * <b>I/O direction and type:</b><br>
+	 * digital output
+	 * <p>
+	 * <b>User description of the I/O:</b><br>
+	 * ./.
+	 * <p>
+	 * <b>Range of the I/O value:</b><br>
+	 * [false; true]
+	 *
+	 * @param value
+	 *            the value, which has to be written to the digital output 'LEDGreen'
+	 */
+	public void setLEDGreen(java.lang.Boolean value)
+	{
+		setDigitalOutput("LEDGreen", value);
 	}
 
 }
